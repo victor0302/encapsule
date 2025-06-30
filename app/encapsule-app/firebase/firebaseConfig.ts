@@ -1,20 +1,30 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getAnalytics } from "firebase/analytics";
 
+// Import from the .env file using @env
+import {
+  FIREBASE_API_KEY,
+  FIREBASE_AUTH_DOMAIN,
+  FIREBASE_PROJECT_ID,
+  FIREBASE_STORAGE_BUCKET,
+  FIREBASE_MESSAGING_SENDER_ID,
+  FIREBASE_APP_ID,
+  FIREBASE_MEASUREMENT_ID
+} from "@env";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAhbpquOm5rdKUqPZd4tviVCbE0150m8OE",
-  authDomain: "encapsule-e8109.firebaseapp.com",
-  projectId: "encapsule-e8109",
-  storageBucket: "encapsule-e8109.firebasestorage.com",
-  messagingSenderId: "1012745147908",
-  appId: "1:1012745147908:web:0b2a4f8bf58f90ee6fc751",
-  measurementId: "G-7BLTKMP7X2"
+  apiKey: FIREBASE_API_KEY,
+  authDomain: FIREBASE_AUTH_DOMAIN,
+  projectId: FIREBASE_PROJECT_ID,
+  storageBucket: FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
+  appId: FIREBASE_APP_ID,
+  measurementId: FIREBASE_MEASUREMENT_ID
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const analytics = getAnalytics(app);
 
-
-// Export the auth module so you can use it throughout your app
-export const auth = getAuth(app);
+export { auth, app, analytics };
